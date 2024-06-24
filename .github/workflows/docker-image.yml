@@ -26,10 +26,10 @@ jobs:
            docker login -u $DOCKER_USER -p $DOCKER_PASSWORD
            echo "end the login"
     - name: Build Docker Image
-       run: |
+      run: |
           docker build -t ibanesperez/graphql-actions:1.0.2 .
     - name: Push Docker Image
-       run: | 
+      run: | 
            docker push -t ibanesperez/graphql-actions:1.0.2 .
 
 
