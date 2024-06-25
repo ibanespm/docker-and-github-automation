@@ -21,30 +21,28 @@ jobs:
       with:
         major_pattern: "major:"
         minor_pattern: "feat:"
-        version_format: "${major}.${minor}.${patch}-prerelease${increment}"
+        version_format: "${{major}}.${{minor}}.${{patch}}-prerelease${{increment}}"
       id: version
-
-            
 
     - name: Docker login 
       env: 
         DOCKER_USER: ${{ secrets.DOCKER_USER }} 
         DOCKER_PASSWORD: ${{ secrets.DOCKER_PASSWORD }} 
-        NEW_VERSION: ${{ steps.version.outputs.version }}
       run: |
         echo "initing login"
         echo $DOCKER_PASSWORD | docker login -u $DOCKER_USER --password-stdin
         echo "end the login"
-        echo "New version: $NEW_VERSION !!!!!!"
 
     - name: Build Docker Image
       env: 
         NEW_VERSION: ${{ steps.version.outputs.version }}
       run: |
-          docker build -t ibanesperez/graphql-actions:$NEW_VERSION.
-          docker build -t ibanesperez/graphql-actions:latest .
+        docker build -t ibanesperez/graphql-actions:$NEW_VERSION .
+        docker build -t ibanesperez/graphql-actions:latest .
 
     - name: Push Docker Image
+      env: 
+        NEW_VERSION: ${{ steps.version.outputs.version }}
       run: |
-           docker push ibanesperez/graphql-actions:1.0.2
-           docker push ibanesperez/graphql-actions:latest
+        docker push ibanesperez/graphql-actions:$NEW_VERSION
+        docker push ibanesperez/graphql-actions:latest
