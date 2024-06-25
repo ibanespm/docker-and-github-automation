@@ -18,6 +18,8 @@ COPY package.json package.json
 RUN yarn install --prod --frozen-lockfile
 
 
+
+#this step is for production
 FROM node:19-alpine3.15 as prod
 EXPOSE 3000
 WORKDIR /app
