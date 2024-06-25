@@ -35,6 +35,7 @@ jobs:
         echo "end the login"
     - name: Build Docker Image
       env: 
+      
         NEW_VERSION: ${{ steps.version.outputs.version }}
       run: |
         docker build -t ibanesperez/graphql-actions:$NEW_VERSION .
