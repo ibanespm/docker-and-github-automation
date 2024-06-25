@@ -30,7 +30,7 @@ jobs:
           docker build -t ibanesperez/graphql-actions:1.0.2 .
     - name: Push Docker Image
       run: | 
-           docker push -t ibanesperez/graphql-actions:1.0.2 .
+           docker push ibanesperez/graphql-actions:1.0.2 .
 
 
 
