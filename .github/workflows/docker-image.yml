@@ -34,18 +34,18 @@ jobs:
         echo $DOCKER_PASSWORD | docker login -u $DOCKER_USER --password-stdin
         echo "end the login"
 
-    - name: Build Docker Image
-      env: 
-        NEW_VERSION: ${{ steps.version.outputs.version }}
-      run: |
-        docker build -t ibanesperez/graphql-actions:$NEW_VERSION .
-        docker build -t ibanesperez/graphql-actions:latest .
+    # - name: Build Docker Image
+    #   env: 
+    #     NEW_VERSION: ${{ steps.version.outputs.version }}
+    #   run: |
+    #     docker build -t ibanesperez/graphql-actions:$NEW_VERSION .
+    #     docker build -t ibanesperez/graphql-actions:latest .
 
-    - name: Push Docker Image
-      env: 
-        NEW_VERSION: ${{ steps.version.outputs.version }}
-      run: |
-        docker push ibanesperez/graphql-actions:$NEW_VERSION
-        docker push ibanesperez/graphql-actions:latest
+    # - name: Push Docker Image
+    #   env: 
+    #     NEW_VERSION: ${{ steps.version.outputs.version }}
+    #   run: |
+    #     docker push ibanesperez/graphql-actions:$NEW_VERSION
+    #     docker push ibanesperez/graphql-actions:latest
 
 
