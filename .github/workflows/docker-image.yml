@@ -26,9 +26,11 @@ jobs:
         echo "end the login"
 
     - name: Build Docker Image
-      run: docker build -t ibanesperez/graphql-actions:1.0.2 .
-           docker build -t ibanesperez/graphql-actions:latest .
+      run: |
+          docker build -t ibanesperez/graphql-actions:1.0.2 .
+          docker build -t ibanesperez/graphql-actions:latest .
 
     - name: Push Docker Image
-      run: docker push ibanesperez/graphql-actions:1.0.2
+      run: |
+           docker push ibanesperez/graphql-actions:1.0.2
            docker push ibanesperez/graphql-actions:latest
