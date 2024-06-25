@@ -17,7 +17,7 @@ jobs:
         fetch-depth: 0
 
     - name: Git Semantic Version
-      uses: PaulHatch/semantic-version@v5.4.0
+      uses: PaulHatch/semantic-version@v5.2.1
       with:
         major_pattern: "major:"
         minor_pattern: "feat:"
@@ -38,8 +38,10 @@ jobs:
         echo "New version: $NEW_VERSION !!!!!!"
 
     - name: Build Docker Image
+      env: 
+        NEW_VERSION: ${{ steps.version.outputs.version }}
       run: |
-          docker build -t ibanesperez/graphql-actions:1.0.2 .
+          docker build -t ibanesperez/graphql-actions:$NEW_VERSION.
           docker build -t ibanesperez/graphql-actions:latest .
 
     - name: Push Docker Image
